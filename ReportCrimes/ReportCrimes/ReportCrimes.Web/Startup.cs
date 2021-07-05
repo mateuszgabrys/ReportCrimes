@@ -26,9 +26,11 @@ namespace ReportCrimes.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient<ILawEnforcementService, LawEnforcementService>();
+            services.AddHttpClient<ICrimeService, CrimeService>();
             SD.LawEnforcementAPIBase = Configuration["ServiceUrls:LawEnforcementAPI"];
             SD.CrimeAPIBase = Configuration["ServiceUrls:CrimeAPI"];
             services.AddScoped<ILawEnforcementService, LawEnforcementService>();
+            services.AddScoped<ICrimeService, CrimeService>();
             services.AddControllersWithViews();
         }
 

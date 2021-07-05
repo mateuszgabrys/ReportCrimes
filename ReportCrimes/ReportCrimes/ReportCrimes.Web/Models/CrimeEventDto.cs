@@ -7,7 +7,7 @@ namespace ReportCrimes.Web.Models
 {
     public class CrimeEventDto
     {
-        public int CrimeId { get; set; }
+        public string CrimeId { get; set; }
         public DateTime DateOfEvent { get; set; }
         public string TypeOfEvent { get; set; }
         public string Description { get; set; }
