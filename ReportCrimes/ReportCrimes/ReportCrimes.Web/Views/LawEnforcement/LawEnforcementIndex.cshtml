@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="col text-end pt-1">
-        <a asp-action="ProductCreate" class="btn btn-outline-primary"><i class="fas fa-plus"></i>Create New Law Enforcement</a>
+        <a asp-action="LawEnforcementCreate" class="btn btn-outline-primary"><i class="fas fa-plus"></i>Create New Law Enforcement</a>
     </div>
     <table class="table">
         <thead>
@@ -37,10 +37,10 @@
                             @crime <span> </span>
                     </td>
                     <td>
-                        <a asp-action="LawEnforcementEdit" class="btn btn-success" asp-route-productId="@item.LawEnforcementId">
+                        <a asp-action="LawEnforcementEdit" class="btn btn-success" asp-route-id="@item.LawEnforcementId">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a asp-action="LawEnforcementDelete" class="btn btn-danger" asp-route-productId="@item.LawEnforcementId">
+                        <a asp-action="LawEnforcementDelete" class="btn btn-danger" asp-route-id="@item.LawEnforcementId">
                             <i class="fas fa-trash"></i>
                         </a>
                     </td>
