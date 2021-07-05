@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ReportCrimes.Web.Models.LawEnforcementDto>
+
+<br />
+<br />
+
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-info">Law Enforcement List</h1>
+        </div>
+    </div>
+    <div class="col text-end pt-1">
+        <a asp-action="ProductCreate" class="btn btn-outline-primary"><i class="fas fa-plus"></i>Create New Law Enforcement</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Rank Of Law Enforcement
+                </th>
+                <th>
+                    Crime Events
+                </th>
+   
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.RankOfLawEnforcement
+                    </td>
+                    <td>
+                        @foreach (var crime in item.CrimeEvents)
+                            @crime <span> </span>
+                    </td>
+                    <td>
+                        <a asp-action="LawEnforcementEdit" class="btn btn-success" asp-route-productId="@item.LawEnforcementId">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a asp-action="LawEnforcementDelete" class="btn btn-danger" asp-route-productId="@item.LawEnforcementId">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReportCrimes.Web.Services.IServices
 {
-    public interface ILawEnforcementService
+    public interface ILawEnforcementService : IBaseService
     {
         Task<T> GetAll<T>();
         Task<T> GetSingle<T>(int id);
