@@ -1,5 +1,6 @@
 using AutoMapper;
 using LawEnforcementAPI.DbContexts;
+using LawEnforcementAPI.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +35,7 @@ namespace LawEnforcementAPI
             IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
             services.AddSingleton(mapper);
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<ILawEnforcementRepository, LawEnforcementRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
