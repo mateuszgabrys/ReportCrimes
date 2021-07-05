@@ -1,17 +1,21 @@
+using CrimeEventAPI.DbContexts;
+using CrimeEventAPI.Repository;
+using CrimeEventAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ReportCrimes.Web.Services;
-using ReportCrimes.Web.Services.IServices;
+using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ReportCrimes.Web
+namespace CrimeEventAPI
 {
     public class Startup
     {
@@ -25,11 +29,16 @@ namespace ReportCrimes.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient<ILawEnforcementService, LawEnforcementService>();
-            SD.LawEnforcementAPIBase = Configuration["ServiceUrls:LawEnforcementAPI"];
-            SD.CrimeAPIBase = Configuration["ServiceUrls:CrimeAPI"];
-            services.AddScoped<ILawEnforcementService, LawEnforcementService>();
-            services.AddControllersWithViews();
+
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CrimeEventAPI", Version = "v1" });
+            });
+            services.AddScoped<ApplicationDbContext>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<ICrimeRepository, CrimeRepository>();
+            services.AddScoped<ICrimeService, CrimeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,15 +47,11 @@ namespace ReportCrimes.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CrimeEventAPI v1"));
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -54,9 +59,7 @@ namespace ReportCrimes.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }

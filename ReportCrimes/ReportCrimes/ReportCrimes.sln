@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportCrimes.Web", "ReportC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LawEnforcementAPI", "LawEnforcementAPI\LawEnforcementAPI.csproj", "{BA2062BD-284C-4458-A5FA-AB5A68D66283}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrimeEventAPI", "CrimeEventAPI\CrimeEventAPI.csproj", "{441434A0-B7FE-456E-9FBA-2D06F4D9EB04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{BA2062BD-284C-4458-A5FA-AB5A68D66283}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA2062BD-284C-4458-A5FA-AB5A68D66283}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA2062BD-284C-4458-A5FA-AB5A68D66283}.Release|Any CPU.Build.0 = Release|Any CPU
+		{441434A0-B7FE-456E-9FBA-2D06F4D9EB04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{441434A0-B7FE-456E-9FBA-2D06F4D9EB04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{441434A0-B7FE-456E-9FBA-2D06F4D9EB04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{441434A0-B7FE-456E-9FBA-2D06F4D9EB04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2B2A77D8-6F33-494A-9814-44F1551EBA32} = {88388E26-E9E6-4581-9E62-FA4E23BC9FDF}
 		{BA2062BD-284C-4458-A5FA-AB5A68D66283} = {D464730A-FC37-467B-9931-AF75A53ACF73}
+		{441434A0-B7FE-456E-9FBA-2D06F4D9EB04} = {D464730A-FC37-467B-9931-AF75A53ACF73}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {29E06354-8902-4DA9-B4EA-E330C9705484}
