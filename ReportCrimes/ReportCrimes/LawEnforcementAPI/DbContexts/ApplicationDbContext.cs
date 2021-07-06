@@ -11,7 +11,7 @@ namespace LawEnforcementAPI.DbContexts
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-
+            Database.EnsureCreated();
         }
         public DbSet<CrimeEvent> CrimeEvents { get; set; }
         public DbSet<LawEnforcement> LawEnforcements { get; set; }

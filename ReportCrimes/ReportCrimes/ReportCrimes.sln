@@ -7,11 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{88
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{D464730A-FC37-467B-9931-AF75A53ACF73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportCrimes.Web", "ReportCrimes.Web\ReportCrimes.Web.csproj", "{2B2A77D8-6F33-494A-9814-44F1551EBA32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportCrimes.Web", "ReportCrimes.Web\ReportCrimes.Web.csproj", "{2B2A77D8-6F33-494A-9814-44F1551EBA32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LawEnforcementAPI", "LawEnforcementAPI\LawEnforcementAPI.csproj", "{BA2062BD-284C-4458-A5FA-AB5A68D66283}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawEnforcementAPI", "LawEnforcementAPI\LawEnforcementAPI.csproj", "{BA2062BD-284C-4458-A5FA-AB5A68D66283}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrimeEventAPI", "CrimeEventAPI\CrimeEventAPI.csproj", "{441434A0-B7FE-456E-9FBA-2D06F4D9EB04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrimeEventAPI", "CrimeEventAPI\CrimeEventAPI.csproj", "{441434A0-B7FE-456E-9FBA-2D06F4D9EB04}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{77BA6EDD-DD97-4595-8AA4-F5564C66965A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{441434A0-B7FE-456E-9FBA-2D06F4D9EB04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{441434A0-B7FE-456E-9FBA-2D06F4D9EB04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{441434A0-B7FE-456E-9FBA-2D06F4D9EB04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77BA6EDD-DD97-4595-8AA4-F5564C66965A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77BA6EDD-DD97-4595-8AA4-F5564C66965A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77BA6EDD-DD97-4595-8AA4-F5564C66965A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77BA6EDD-DD97-4595-8AA4-F5564C66965A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

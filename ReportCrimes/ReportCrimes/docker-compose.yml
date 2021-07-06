@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  mongosrv:
+    image: mongo
+
+  msqlsrv:
+    container_name: msqlsrv
+    image: mcr.microsoft.com/mssql/server:2019-CU11-ubuntu-20.04
+
+  lawenforcementapi:
+    image: ${DOCKER_REGISTRY-}lawenforcementapi
+    build:
+      context: .
+      dockerfile: LawEnforcementAPI/Dockerfile
+
+  crimeeventapi:
+    image: ${DOCKER_REGISTRY-}crimeeventapi
+    build:
+      context: .
+      dockerfile: CrimeEventAPI/Dockerfile
+
+
+  reportcrimes.web:
+    image: ${DOCKER_REGISTRY-}reportcrimesweb
+    build:
+      context: .
+      dockerfile: ReportCrimes.Web/Dockerfile
+

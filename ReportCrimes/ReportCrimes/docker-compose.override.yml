@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+  mongosrv:
+    container_name: mongosrv
+    restart: always
+    ports:
+      - "27017:27017"
+
+  msqlsrv:
+    ports:
+      - "9034:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "_Password123"
+      MSSQL_PID: Express
+
+  lawenforcementapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - msqlsrv
+    ports:
+      - "9000:80"
+
+  crimeeventapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+     - mongosrv
+    ports:
+      - "9001:80"
+
+  reportcrimes.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "9002:80"
