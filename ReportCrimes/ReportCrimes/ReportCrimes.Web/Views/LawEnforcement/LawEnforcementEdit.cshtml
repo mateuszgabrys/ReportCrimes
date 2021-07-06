@@ -1,38 +1,49 @@
-﻿@model ReportCrimes.Web.Models.LawEnforcementDto
+﻿@model IEnumerable<ReportCrimes.Web.Models.CrimeEventDto>
 
+<br />
+<br />
 
-<form asp-action="LawEnforcementEdit">
-    <input asp-for="LawEnforcementId" hidden />
-    <br />
-    <div class="container border p-3">
-        <h1 class="text-primary">Edit Law Enforcement</h1>
-
-        <hr />
-        <div class="row">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="col-2">
-                <label asp-for="RankOfLawEnforcement" class="control-label pt-2" style="font-size:20px;">Law Enforcement</label>
-            </div>
-            <div class="col-10 pb-3">
-                <input asp-for="RankOfLawEnforcement" class="form-control" />
-                <span asp-validation-for="RankOfLawEnforcement" class="text-danger"></span>
-            </div>
-            <div class="col-5 offset-2">
-
-                <a asp-action="LawEnforcementIndex" class="btn-primary btn form-control ">Back to List</a>
-            </div>
-            <div class="col-5">
-                <input type="submit" value="Update" class="btn btn-info form-control" />
-
-            </div>
-
-        </div>
-
-        <div>
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-success">Add new crime to your department</h1>
         </div>
     </div>
-</form>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Data
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @item.TypeOfEvent
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    @item.DateOfEvent
+                </td>
+                <td>
+                    <a asp-action="LawEnforcementEdit" class="btn btn-success" asp-route-id="@item.LawEnforcementId">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

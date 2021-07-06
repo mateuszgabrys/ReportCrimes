@@ -50,28 +50,28 @@ namespace ReportCrimes.Web.Controllers
 
         public async Task<IActionResult> LawEnforcementEdit(int id)
         {
-            var response = await _lawEnforcementService.GetSingle<ResponseDto>(id);
+            List<CrimeEventDto> list = new();
+            var response = await _crimeService.GetAll<ResponseDto>();
             if (response != null && response.IsSucces)
             {
-                LawEnforcementDto model = JsonConvert.DeserializeObject<LawEnforcementDto>(Convert.ToString(response.Result));
-                return View(model);
+                list = JsonConvert.DeserializeObject<List<CrimeEventDto>>(Convert.ToString(response.Result));
             }
-            return NotFound();
+            return View(list);
         }
-        [HttpPost]
-        public async Task<IActionResult> LawEnforcementEdit(LawEnforcementDto law)
-        {
-            if (ModelState.IsValid)
-            {
-                var response = await _lawEnforcementService.Update<ResponseDto>(law);
+        //[HttpPost]
+        //public async Task<IActionResult> LawEnforcementEdit(LawEnforcementDto law)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var response = await _lawEnforcementService.Update<ResponseDto>(law);
                 
-                if (response != null && response.IsSucces)
-                {
-                    return RedirectToAction(nameof(LawEnforcementIndex));
-                }
-            }
-            return View(law);
-        }
+        //        if (response != null && response.IsSucces)
+        //        {
+        //            return RedirectToAction(nameof(LawEnforcementIndex));
+        //        }
+        //    }
+        //    return View(law);
+        //}
 
         public async Task<IActionResult> LawEnforcementDelete(int id)
         {
