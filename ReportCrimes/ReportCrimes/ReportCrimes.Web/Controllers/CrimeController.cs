@@ -4,7 +4,6 @@ using ReportCrimes.Web.Models;
 using ReportCrimes.Web.Services.IServices;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ReportCrimes.Web.Controllers

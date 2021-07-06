@@ -6,10 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ReportCrimes.Web.Services;
 using ReportCrimes.Web.Services.IServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ReportCrimes.Web
 {

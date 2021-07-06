@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static ReportCrimes.Web.SD;
+﻿using static ReportCrimes.Web.SD;
 
 namespace ReportCrimes.Web.Models
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static LawEnforcementAPI.SD;
+﻿using static LawEnforcementAPI.SD;
 
 namespace LawEnforcementAPI.Models
 {

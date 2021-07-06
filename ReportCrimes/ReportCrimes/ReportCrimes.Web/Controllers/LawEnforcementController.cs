@@ -4,7 +4,6 @@ using ReportCrimes.Web.Models;
 using ReportCrimes.Web.Services.IServices;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ReportCrimes.Web.Controllers
@@ -58,20 +57,6 @@ namespace ReportCrimes.Web.Controllers
             }
             return View(list);
         }
-        //[HttpPost]
-        //public async Task<IActionResult> LawEnforcementEdit(LawEnforcementDto law)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var response = await _lawEnforcementService.Update<ResponseDto>(law);
-                
-        //        if (response != null && response.IsSucces)
-        //        {
-        //            return RedirectToAction(nameof(LawEnforcementIndex));
-        //        }
-        //    }
-        //    return View(law);
-        //}
 
         public async Task<IActionResult> LawEnforcementDelete(int lawId)
         {
@@ -98,7 +83,7 @@ namespace ReportCrimes.Web.Controllers
             return View(law);
         }
 
-        [HttpGet] // id -> lawenf, val -> crime id
+        [HttpGet]
         public async Task<IActionResult> AddCrime([FromRoute] int id, [FromRoute] string val)
         {
             CrimeEventDto crime = new();
