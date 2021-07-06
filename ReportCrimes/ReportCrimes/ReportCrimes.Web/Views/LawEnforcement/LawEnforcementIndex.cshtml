@@ -18,9 +18,6 @@
                 <th>
                     Rank Of Law Enforcement
                 </th>
-                <th>
-                    Crime List
-                </th>
                 <th></th>
             </tr>
         </thead>
@@ -30,12 +27,6 @@
             <tr>
                 <td>
                     @item.RankOfLawEnforcement
-                </td>
-                <td>
-                    @foreach (var crime in item.CrimeEvents)
-                    {
-                        @crime <span> </span>
-                    }
                 </td>
                 <td>
                     <a asp-action="LawEnforcementEdit" class="btn btn-success" asp-route-lawId="@item.LawEnforcementId">
