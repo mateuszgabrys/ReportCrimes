@@ -22,31 +22,80 @@ namespace CrimeEventAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CrimeEvent>>> GetAll()
+        public async Task<object> GetAll()
         {
-            var entries = await _service.GetAll();
-            return Ok(entries);
+            try
+            {
+                IEnumerable<CrimeEvent> crimes = await _service.GetAll();
+                _response.Result = crimes;
+            }
+            catch (Exception ex)
+            {
+
+                _response.IsSucces = false;
+                _response.ErrorMessage = new List<string>() { ex.ToString() };
+            }
+            return _response;
+
+            //var crimes = await _service.GetAll();
+            //return Ok(crimes);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<CrimeEvent>>> GetEntry([FromRoute] string id)
+        public async Task<object> Get([FromRoute] string id)
         {
-            var entry = await _service.Get(id);
-            return Ok(entry);
+            try
+            {
+                CrimeEvent crime = await _service.Get(id);
+                _response.Result = crime;
+            }
+            catch (Exception ex)
+            {
+
+                _response.IsSucces = false;
+                _response.ErrorMessage = new List<string>() { ex.ToString() };
+            }
+            return _response;
+            //var entry = await _service.Get(id);
+            //return Ok(entry);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(string id)
+        public async Task<object> Delete(string id)
         {
-            await _service.Delete(id);
-            return NoContent();
+            try
+            {
+                bool isSucces = await _service.Delete(id);
+                _response.Result = isSucces;
+            }
+            catch (Exception ex)
+            {
+
+                _response.IsSucces = false;
+                _response.ErrorMessage = new List<string>() { ex.ToString() };
+            }
+            return _response;
+            //await _service.Delete(id);
+            //return NoContent();
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CrimeEvent dto)
+        public async Task<object> Post([FromBody] CrimeEvent dto)
         {
-            var newEntry = await _service.Add(dto);
-            return Ok(newEntry);
+            try
+            {
+                CrimeEvent model = await _service.Add(dto);
+                _response.Result = model;
+            }
+            catch (Exception ex)
+            {
+
+                _response.IsSucces = false;
+                _response.ErrorMessage = new List<string>() { ex.ToString() };
+            }
+            return _response;
+            //var newEntry = await _service.Add(dto);
+            //return Ok(newEntry);
         }
 
     }
