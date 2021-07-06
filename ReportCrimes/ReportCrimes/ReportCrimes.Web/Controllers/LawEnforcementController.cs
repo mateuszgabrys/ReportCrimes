@@ -12,9 +12,12 @@ namespace ReportCrimes.Web.Controllers
     public class LawEnforcementController : Controller
     {
         private readonly ILawEnforcementService _lawEnforcementService;
-        public LawEnforcementController(ILawEnforcementService lawEnforcementService)
+        private readonly ICrimeService _crimeService;
+        public LawEnforcementController(ICrimeService crimeService, ILawEnforcementService lawEnforcementService)
         {
             _lawEnforcementService = lawEnforcementService;
+            _crimeService = crimeService;
+
         }
         public async Task<IActionResult> LawEnforcementIndex()
         {
@@ -60,7 +63,6 @@ namespace ReportCrimes.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var cos = law;
                 var response = await _lawEnforcementService.Update<ResponseDto>(law);
                 
                 if (response != null && response.IsSucces)
