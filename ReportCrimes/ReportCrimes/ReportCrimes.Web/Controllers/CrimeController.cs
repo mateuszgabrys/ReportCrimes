@@ -58,5 +58,30 @@ namespace ReportCrimes.Web.Controllers
             }
             return View(dto);
         }
+
+        public async Task<IActionResult> CrimeEventDelete(string id)
+        {
+            var response = await _crimeService.GetSingle<ResponseDto>(id);
+            if (response != null && response.IsSucces)
+            {
+                CrimeEventDto model = JsonConvert.DeserializeObject<CrimeEventDto>(Convert.ToString(response.Result));
+                return View(model);
+            }
+            return NotFound();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CrimeEventDelete(CrimeEventDto crime)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _crimeService.Delete<ResponseDto>(crime.CrimeId);
+
+                if (response.IsSucces)
+                {
+                    return RedirectToAction(nameof(CrimeIndex));
+                }
+            }
+            return View(crime);
+        }
     }
 }

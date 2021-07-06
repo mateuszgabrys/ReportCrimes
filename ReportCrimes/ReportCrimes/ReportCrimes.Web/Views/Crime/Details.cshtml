@@ -33,17 +33,25 @@
                                 </div>
                             </div>
                             @*<div class="row px-4">
-                                    <input class="form-control" />
-                                </div>*@
+                            <input class="form-control" />
+                        </div>*@
                         </div>
                     </div>
                 </div>
             </div>
+            //
             <div class="card-footer row bg-dark">
                 <div class="col-12 col-md-6 pb-1 ">
-                    <a class="btn btn-success btn-square form-control btn-lg text-center" asp-action="CrimeIndex" style="height:50px;">Back to List</a>
+                    <a class="btn btn-success btn-square form-control btn-lg" style="height:50px;">Back to List</a>
+                </div>
+                <div class="col-12 col-md-6 ">
+
+
+                    <a asp-action="CrimeEventDelete"  asp-route-id="@Model.CrimeId" class="btn btn-danger   form-control btn-lg" style="height:50px;">Delete</a>
                 </div>
             </div>
+
+          
         </div>
     </div>
 </form>

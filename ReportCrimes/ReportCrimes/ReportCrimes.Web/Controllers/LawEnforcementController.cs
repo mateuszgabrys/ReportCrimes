@@ -48,7 +48,7 @@ namespace ReportCrimes.Web.Controllers
             return View(law);
         }
 
-        public async Task<IActionResult> LawEnforcementEdit(int id)
+        public async Task<IActionResult> LawEnforcementEdit(int lawId)
         {
             List<CrimeEventDto> list = new();
             var response = await _crimeService.GetAll<ResponseDto>();
@@ -73,9 +73,9 @@ namespace ReportCrimes.Web.Controllers
         //    return View(law);
         //}
 
-        public async Task<IActionResult> LawEnforcementDelete(int id)
+        public async Task<IActionResult> LawEnforcementDelete(int lawId)
         {
-            var response = await _lawEnforcementService.GetSingle<ResponseDto>(id);
+            var response = await _lawEnforcementService.GetSingle<ResponseDto>(lawId);
             if (response != null && response.IsSucces)
             {
                 LawEnforcementDto model = JsonConvert.DeserializeObject<LawEnforcementDto>(Convert.ToString(response.Result));
@@ -88,7 +88,6 @@ namespace ReportCrimes.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var cos = law;
                 var response = await _lawEnforcementService.Delete<ResponseDto>(law.LawEnforcementId);
 
                 if (response.IsSucces)
@@ -97,6 +96,18 @@ namespace ReportCrimes.Web.Controllers
                 }
             }
             return View(law);
+        }
+
+        [HttpGet] // id -> lawenf, val -> crime id
+        public async Task<IActionResult> AddCrime([FromRoute] int id, [FromRoute] string val)
+        {
+            CrimeEventDto crime = new();
+            crime.LawEnforcementId = id;
+            crime.CrimeId = val;
+            var response = await _crimeService.Update<ResponseDto>(crime);
+
+            return RedirectToAction("LawEnforcementIndex", "LawEnforcement");
+
         }
     }
 }

@@ -38,8 +38,8 @@
                     @item.DateOfEvent
                 </td>
                 <td>
-                    <a asp-action="LawEnforcementEdit" class="btn btn-success" asp-route-id="@item.LawEnforcementId">
-                        <i class="fas fa-edit"></i>
+                    <a class="btn btn-succes" asp-action="AddCrime" asp-route-id="@item.LawEnforcementId" asp-route-val="@item.CrimeId">
+                        Add
                     </a>
                 </td>
             </tr>
