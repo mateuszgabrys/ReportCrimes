@@ -26,7 +26,7 @@ namespace ReportCrimes.Web.Services
             });
         }
 
-        public async Task<T> Delete<T>(int id)
+        public async Task<T> Delete<T>(string id)
         {
             return await this.SendAsync<T>(new ApiRequest()
             {
@@ -45,7 +45,7 @@ namespace ReportCrimes.Web.Services
             });
         }
 
-        public async Task<T> GetSingle<T>(int id)
+        public async Task<T> GetSingle<T>(string id)
         {
             return await this.SendAsync<T>(new ApiRequest()
             {
@@ -61,6 +61,15 @@ namespace ReportCrimes.Web.Services
                 ApiType = SD.ApiType.PUT,
                 Data = crimeEventDto,
                 Url = SD.CrimeAPIBase + "/api/Crime/"
+            });
+        }
+
+        public async Task<T> GetAllEnv<T>()
+        {
+            return await this.SendAsync<T>(new ApiRequest()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.LawEnforcementAPIBase + "/api/LawEnforcement"
             });
         }
     }

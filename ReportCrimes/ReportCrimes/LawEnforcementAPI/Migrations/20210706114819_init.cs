@@ -45,6 +45,21 @@ namespace LawEnforcementAPI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "LawEnforcements",
+                columns: new[] { "LawEnforcementId", "RankOfLawEnforcement" },
+                values: new object[] { 1, "Assault Department" });
+
+            migrationBuilder.InsertData(
+                table: "LawEnforcements",
+                columns: new[] { "LawEnforcementId", "RankOfLawEnforcement" },
+                values: new object[] { 2, "Burglary Department" });
+
+            migrationBuilder.InsertData(
+                table: "LawEnforcements",
+                columns: new[] { "LawEnforcementId", "RankOfLawEnforcement" },
+                values: new object[] { 3, "Fraud Department" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_CrimeEvents_LawEnforcementId",
                 table: "CrimeEvents",

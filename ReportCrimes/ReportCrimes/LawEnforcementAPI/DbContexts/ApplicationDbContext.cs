@@ -23,17 +23,17 @@ namespace LawEnforcementAPI.DbContexts
             modelBuilder.Entity<LawEnforcement>().HasData(new LawEnforcement
             {
                 LawEnforcementId = 1,
-                RankOfLawEnforcement = "Police"
+                RankOfLawEnforcement = "Assault Department"
             });
             modelBuilder.Entity<LawEnforcement>().HasData(new LawEnforcement
             {
                 LawEnforcementId = 2,
-                RankOfLawEnforcement = "Officer"
+                RankOfLawEnforcement = "Burglary Department"
             });
             modelBuilder.Entity<LawEnforcement>().HasData(new LawEnforcement
             {
                 LawEnforcementId = 3,
-                RankOfLawEnforcement = "Sherif"
+                RankOfLawEnforcement = "Fraud Department"
             });
         }
 

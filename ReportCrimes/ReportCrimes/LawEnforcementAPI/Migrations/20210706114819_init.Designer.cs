@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LawEnforcementAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210705145547_init2")]
-    partial class init2
+    [Migration("20210706114819_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,17 +74,17 @@ namespace LawEnforcementAPI.Migrations
                         new
                         {
                             LawEnforcementId = 1,
-                            RankOfLawEnforcement = "Police"
+                            RankOfLawEnforcement = "Assault Department"
                         },
                         new
                         {
                             LawEnforcementId = 2,
-                            RankOfLawEnforcement = "Officer"
+                            RankOfLawEnforcement = "Burglary Department"
                         },
                         new
                         {
                             LawEnforcementId = 3,
-                            RankOfLawEnforcement = "Sherif"
+                            RankOfLawEnforcement = "Fraud Department"
                         });
                 });
 
