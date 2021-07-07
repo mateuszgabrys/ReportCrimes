@@ -20,9 +20,5 @@ To run this project, download it and run it locally or using docker.
 Write "dokcer-compose up --build" in your developer powershell then open web browser and use this URL
 http://localhost:9002/
 
-```
-$ cd ../lorem
-$ npm install
-$ npm start
-```
+
 
