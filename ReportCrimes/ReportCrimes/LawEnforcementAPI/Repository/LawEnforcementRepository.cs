@@ -58,13 +58,13 @@ namespace LawEnforcementAPI.Repository
 
         public async Task<IEnumerable<LawEnforcementDto>> GetAll()
         {
-            IEnumerable<LawEnforcement> list = await _db.LawEnforcements.ToListAsync();
+            IEnumerable<LawEnforcement> list = await _db.LawEnforcements.Include(x=>x.CrimeEvents).ToListAsync();
             return _mapper.Map<List<LawEnforcementDto>>(list);
         }
 
         public async Task<LawEnforcementDto> GetSingle(int id)
         {
-            LawEnforcement lawEnforcement = await _db.LawEnforcements.Where(x=> x.LawEnforcementId == id).FirstOrDefaultAsync();
+            LawEnforcement lawEnforcement = await _db.LawEnforcements.Include(x=>x.CrimeEvents).Where(x=> x.LawEnforcementId == id).FirstOrDefaultAsync();
             return _mapper.Map<LawEnforcementDto>(lawEnforcement);
         }
     }
