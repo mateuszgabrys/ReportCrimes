@@ -1,4 +1,5 @@
 using CrimeEventAPI.DbContexts;
+using CrimeEventAPI.Middleware;
 using CrimeEventAPI.Repository;
 using CrimeEventAPI.Services;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,7 @@ namespace CrimeEventAPI
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICrimeRepository, CrimeRepository>();
             services.AddScoped<ICrimeService, CrimeService>();
+            services.AddScoped<ErrorHandlingMiddleware>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +47,7 @@ namespace CrimeEventAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CrimeEventAPI v1"));
             }
-
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseHttpsRedirection();
 
             app.UseRouting();

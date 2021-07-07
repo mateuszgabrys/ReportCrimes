@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CrimeEventAPI.Exceptions;
 using CrimeEventAPI.Models;
 using CrimeEventAPI.Repository;
 using System;
@@ -48,6 +49,10 @@ namespace CrimeEventAPI.Services
         public async Task Edit(CrimeEvent crimeDto)
         {
             var entryInDb = await _repository.GetSingle(x => x.CrimeId == crimeDto.CrimeId);
+            if (entryInDb == null)
+            {
+                throw new NotFoundException("Not Found");
+            }
             _mapper.Map(crimeDto, entryInDb);
             await _repository.Edit(entryInDb);
         }

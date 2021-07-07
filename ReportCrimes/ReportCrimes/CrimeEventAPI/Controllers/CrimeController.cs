@@ -2,6 +2,7 @@
 using CrimeEventAPI.Models.Dto;
 using CrimeEventAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,10 +13,12 @@ namespace CrimeEventAPI.Controllers
     [ApiController]
     public class CrimeController : Controller
     {
+        private readonly ILogger<CrimeController> _logger;
         private readonly ICrimeService _service;
         protected ResponseDto _response;
-        public CrimeController(ICrimeService service)
+        public CrimeController(ILogger<CrimeController> logger, ICrimeService service)
         {
+            _logger = logger;
             _service = service;
             this._response = new ResponseDto();
         }
@@ -27,12 +30,14 @@ namespace CrimeEventAPI.Controllers
             {
                 IEnumerable<CrimeEvent> crimes = await _service.GetAll();
                 _response.Result = crimes;
+                _logger.LogInformation("succes");
             }
             catch (Exception ex)
             {
 
                 _response.IsSucces = false;
                 _response.ErrorMessage = new List<string>() { ex.ToString() };
+                _logger.LogWarning("not succes");
             }
             return _response;
 
@@ -47,12 +52,14 @@ namespace CrimeEventAPI.Controllers
             {
                 CrimeEvent crime = await _service.Get(id);
                 _response.Result = crime;
+                _logger.LogInformation("succes");
             }
             catch (Exception ex)
             {
 
                 _response.IsSucces = false;
                 _response.ErrorMessage = new List<string>() { ex.ToString() };
+                _logger.LogWarning("not succes");
             }
             return _response;
             //var entry = await _service.Get(id);
@@ -66,12 +73,14 @@ namespace CrimeEventAPI.Controllers
             {
                 bool isSucces = await _service.Delete(id);
                 _response.Result = isSucces;
+                _logger.LogInformation("succes");
             }
             catch (Exception ex)
             {
 
                 _response.IsSucces = false;
                 _response.ErrorMessage = new List<string>() { ex.ToString() };
+                _logger.LogWarning("not succes");
             }
             return _response;
             //await _service.Delete(id);
@@ -85,12 +94,14 @@ namespace CrimeEventAPI.Controllers
             {
                 CrimeEvent model = await _service.Add(dto);
                 _response.Result = model;
+                _logger.LogInformation("succes");
             }
             catch (Exception ex)
             {
 
                 _response.IsSucces = false;
                 _response.ErrorMessage = new List<string>() { ex.ToString() };
+                _logger.LogWarning("not succes");
             }
             return _response;
             //var newEntry = await _service.Add(dto);

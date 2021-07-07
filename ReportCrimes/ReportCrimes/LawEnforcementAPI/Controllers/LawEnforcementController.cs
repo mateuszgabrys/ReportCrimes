@@ -1,6 +1,7 @@
 ﻿using LawEnforcementAPI.Models.Dto;
 using LawEnforcementAPI.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,9 +12,11 @@ namespace LawEnforcementAPI.Controllers
     public class LawEnforcementController : Controller
     {
         protected ResponseDto _response;
+        private readonly ILogger<LawEnforcementController> _logger;
         private ILawEnforcementRepository _lawEnforcementRepository;
-        public LawEnforcementController(ILawEnforcementRepository lawEnforcementRepository)
+        public LawEnforcementController(ILogger<LawEnforcementController> logger, ILawEnforcementRepository lawEnforcementRepository)
         {
+            _logger = logger;
             _lawEnforcementRepository = lawEnforcementRepository;
             this._response = new ResponseDto();
         }
@@ -24,12 +27,14 @@ namespace LawEnforcementAPI.Controllers
             {
                 IEnumerable<LawEnforcementDto> lawEnforcements = await _lawEnforcementRepository.GetAll();
                 _response.Result = lawEnforcements;
+                _logger.LogInformation("success");
             }
             catch (Exception ex)
             {
 
                 _response.IsSucces = false;
                 _response.ErrorMessage = new List<string>() { ex.ToString() };
+                _logger.LogWarning("not success");
             }
             return _response;
         }
@@ -42,12 +47,14 @@ namespace LawEnforcementAPI.Controllers
             {
                 LawEnforcementDto lawEnforcements = await _lawEnforcementRepository.GetSingle(id);
                 _response.Result = lawEnforcements;
+                _logger.LogInformation("OK");
             }
             catch (Exception ex)
             {
 
                 _response.IsSucces = false;
                 _response.ErrorMessage = new List<string>() { ex.ToString() };
+                _logger.LogWarning("not success");
             }
             return _response;
         }
@@ -59,12 +66,14 @@ namespace LawEnforcementAPI.Controllers
             {
                 LawEnforcementDto model = await _lawEnforcementRepository.CreateUpdate(lawEnforcement);
                 _response.Result = model;
+                _logger.LogInformation("OK");
             }
             catch (Exception ex)
             {
 
                 _response.IsSucces = false;
                 _response.ErrorMessage = new List<string>() { ex.ToString() };
+                _logger.LogWarning("not success");
             }
             return _response;
         }
@@ -76,12 +85,14 @@ namespace LawEnforcementAPI.Controllers
             {
                 LawEnforcementDto model = await _lawEnforcementRepository.CreateUpdate(lawEnforcement);
                 _response.Result = model;
+                _logger.LogInformation("OK");
             }
             catch (Exception ex)
             {
 
                 _response.IsSucces = false;
                 _response.ErrorMessage = new List<string>() { ex.ToString() };
+                _logger.LogWarning("not success");
             }
             return _response;
         }
@@ -94,12 +105,14 @@ namespace LawEnforcementAPI.Controllers
             {
                 bool isSucces = await _lawEnforcementRepository.Delete(id);
                 _response.Result = isSucces;
+                _logger.LogInformation("OK");
             }
             catch (Exception ex)
             {
 
                 _response.IsSucces = false;
                 _response.ErrorMessage = new List<string>() { ex.ToString() };
+                _logger.LogWarning("not success");
             }
             return _response;
         }

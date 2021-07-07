@@ -1,5 +1,6 @@
 using AutoMapper;
 using LawEnforcementAPI.DbContexts;
+using LawEnforcementAPI.Middleware;
 using LawEnforcementAPI.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +37,7 @@ namespace LawEnforcementAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LawEnforcementAPI", Version = "v1" });
             });
+            services.AddScoped<ErrorHandlingMiddleware>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +49,7 @@ namespace LawEnforcementAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "LawEnforcementAPI v1"));
             }
-
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseHttpsRedirection();
 
             app.UseRouting();
